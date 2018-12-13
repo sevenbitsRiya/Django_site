@@ -1,0 +1,28 @@
+{% extends 'shop/base.html' %}
+{% load crispy_forms_tags %}
+
+{% load static %}
+{% block content %}
+<section class="bgwhite p-t-66 p-b-60">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 p-b-30">
+        
+      </div>
+      <div class="col-md-6 p-b-30" style="border: 2; border-width:2px">
+        <h1>{{ title }}</h1>
+        {% if confirm_message %}
+        {% endif %}
+        <p>{{ confirm_message }}</p>
+        {% if form %}
+        <form class = "leave-comment" method='POST' action=''>
+            {% csrf_token %}
+            {{ form|crispy }}
+            <input type='submit' value='submit form' class="flex-c-m size1 bg1 bo-rad-23 hov1 m-text3 trans-0-4">
+        </form>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

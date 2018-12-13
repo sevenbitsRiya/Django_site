@@ -1,0 +1,52 @@
+{% extends 'shop/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %}
+    {% if category %}{{ category.name }} {% else %} Products {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<!-- Product Detail -->
+<div class="container bgwhite p-t-35 p-b-80">
+    <div class="flex-w flex-sb">
+        <div class="w-size13 p-t-30 respon5">
+            <div class="wrap-slick3 flex-sb flex-w">
+                <div class="wrap-slick3-dots"></div>
+
+                <div class="slick3">
+                    <div class="item-slick3" data-thumb="images/thumb-item-01.jpg">
+                        <div class="wrap-pic-w">
+                            <img src="{% if product.image %} {{ product.image.url }} {% else %} {% static 'img/default.jpg' %} {% endif %}" alt="..." >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-size14 p-t-30 respon5">
+            <h4 class="product-detail-name m-text16 p-b-13">
+                {{ product.name }}
+            </h4>
+            <h5>Category :&nbsp;&nbsp;<a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a></h5><br/>
+            <span class="m-text17">
+                &#8377; {{ product.price }}
+            </span><br/><br/>
+            <p class="s-text5 p-t-10">
+                {{ product.description|safe|linebreaksbr }}
+            </p><br/><br/>
+
+            <form action="{% url "cart:cart_add" product.id %}" method="post">
+                {% csrf_token %}
+                {{ cart_product_form|crispy }}
+                <input type="submit" value="add to cart" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" >
+            </form><br/><br/>
+            
+            <!--  -->
+            
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
