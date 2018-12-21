@@ -1,6 +1,6 @@
 from django.db import models
 from django.urls import reverse
-
+import django_filters
 
 class Category(models.Model):
     name = models.CharField(max_length=150, db_index=True)

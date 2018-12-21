@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'paypal.standard.ipn',
     'contact',
+    'django_filters',
     
 ]
 
