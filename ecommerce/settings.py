@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'paypal.standard.ipn',
     'contact',
     'django_filters',
+    'blog',
     
 ]
 
